@@ -1,0 +1,89 @@
+@import "tailwindcss";
+
+@theme {
+  --color-swiss-red: #D52B1E;
+  --color-swiss-gray-light: #F5F5F7;
+  --color-swiss-gray-medium: #8E8E93;
+  --color-swiss-gray-dark: #1A1A1A;
+
+  --font-sans: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+
+  --radius-xl: 1rem;
+  --radius-2xl: 1.5rem;
+
+  --shadow-premium: 0 4px 6px -1px rgb(0 0 0 / 0.05), 0 2px 4px -2px rgb(0 0 0 / 0.05);
+}
+
+@layer base {
+  body {
+    @apply bg-white text-swiss-gray-dark antialiased;
+    font-family: var(--font-sans);
+    background-image: radial-gradient(#e5e7eb 1px, transparent 1px);
+    background-size: 40px 40px;
+  }
+
+  /* Custom Swiss Scrollbar */
+  ::-webkit-scrollbar {
+    width: 6px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #e5e5e5;
+    border-radius: 10px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #D52B1E;
+  }
+}
+
+@keyframes fade-in-up {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulse-red {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+  }
+}
+
+.animate-fade-in-up {
+  animation: fade-in-up 0.4s ease-out forwards;
+}
+
+.animate-pulse-red {
+  animation: pulse-red 2s infinite ease-in-out;
+}
+
+
+@layer components {
+  .btn-primary {
+    @apply bg-swiss-red text-white px-6 py-3 rounded-xl font-bold transition-all hover:bg-red-700 active:scale-95 shadow-premium;
+  }
+
+  .card-premium {
+    @apply bg-swiss-gray-light border border-gray-200 rounded-2xl p-6 shadow-premium transition-all hover:shadow-lg;
+  }
+
+  .input-premium {
+    @apply w-full p-4 bg-white border border-gray-200 rounded-xl focus:ring-2 focus:ring-swiss-red focus:border-transparent outline-none transition-all;
+  }
+}
