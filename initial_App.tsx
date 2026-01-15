@@ -1,4 +1,4 @@
-import { useState, useMemo, useEffect } from 'react';
+﻿import { useState, useMemo, useEffect } from 'react';
 import {
   MapPin,
   ArrowRight,
@@ -6,10 +6,7 @@ import {
   AlertTriangle,
   Plane,
   ShoppingBag,
-  Info,
-  Zap,
-  Globe,
-  Package
+  Info
 } from 'lucide-react';
 import countriesData from './data/countries.json';
 import { PlugIcon } from './components/PlugIcon';
@@ -62,7 +59,7 @@ export default function App() {
   const getAmazonLink = (asin: string) => {
     const domains: Record<string, string> = { CA: 'amazon.ca', UK: 'amazon.co.uk', FR: 'amazon.fr', DE: 'amazon.de' };
     const domain = domains[userRegion] || 'amazon.com';
-    const tag = 'chargeplug-20';
+    const tag = userRegion === 'CA' ? 'purrandpaws05-20' : 'purrandpaws08-20';
     return `https://www.${domain}/dp/${asin}?tag=${tag}`;
   };
 
@@ -88,7 +85,7 @@ export default function App() {
             </div>
 
             <h1 className="text-5xl md:text-7xl font-black tracking-tighter text-swiss-gray-dark leading-none flex items-center">
-              PLUG<span className="text-swiss-red mx-1">·</span>CHECKER
+              PLUG<span className="text-swiss-red mx-1">┬╖</span>CHECKER
             </h1>
           </div>
 
@@ -169,7 +166,6 @@ export default function App() {
             </div>
 
             {/* Technical Breakdown */}
-            {/* Technical & Gear Grid */}
             <div className="grid md:grid-cols-2 gap-6">
               <div className="card-premium h-full">
                 <h3 className="text-[10px] font-black uppercase text-swiss-gray-medium mb-6 tracking-[0.1em] flex items-center gap-2">
@@ -207,27 +203,15 @@ export default function App() {
                       : 'Target standards detect varied socket geometry. A universal Swiss-grade adapter is recommended for consistent connectivity.'}
                   </p>
                 </div>
-                <div className="space-y-3">
-                  {[
-                    { asin: 'B0DHVNW1CN', name: 'Anker Nano', icon: <Zap className="w-3 h-3" /> },
-                    { asin: 'B0CPRDBDTV', name: 'Ceptics Universal', icon: <Globe className="w-3 h-3" /> },
-                    { asin: 'B07DQDD18X', name: 'Ceptics Kit', icon: <Package className="w-3 h-3" /> }
-                  ].map((item) => (
-                    <a
-                      key={item.asin}
-                      href={getAmazonLink(item.asin)}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-between bg-white/10 hover:bg-white/20 p-3 rounded-lg transition-colors border border-white/5"
-                    >
-                      <div className="flex items-center gap-3">
-                        <div className="text-swiss-red">{item.icon}</div>
-                        <span className="text-xs font-bold uppercase tracking-widest">{item.name}</span>
-                      </div>
-                      <ArrowRight className="w-3 h-3 text-white/40" />
-                    </a>
-                  ))}
-                </div>
+                <a
+                  href={getAmazonLink('B0DHVNW1CN')}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-primary w-full flex items-center justify-center gap-3 py-4 text-xs uppercase tracking-widest"
+                >
+                  <ShoppingBag className="w-4 h-4" />
+                  Aquire on Amazon
+                </a>
               </div>
             </div>
           </div>
@@ -250,7 +234,7 @@ export default function App() {
       </main>
 
       <footer className="py-16 px-6 text-center text-[10px] font-black text-swiss-gray-medium uppercase tracking-[0.3em] bg-swiss-gray-light mt-32 border-t border-gray-100">
-        © travel plug checker • precision travel tools • affiliate disclosure active
+        ┬⌐ travel plug checker ΓÇó precision travel tools ΓÇó affiliate disclosure active
       </footer>
     </div>
   );
